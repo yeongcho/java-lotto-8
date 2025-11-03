@@ -26,6 +26,8 @@ public class LottoController {
         while (true) {
             try {
                 return supplier.get();
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 입력은 숫자만 가능합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
