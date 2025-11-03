@@ -15,7 +15,6 @@ public class OutputView {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-
         Map<Rank, Integer> map = result.getResultMap();
 
         // 요구된 출력 순서대로 출력
