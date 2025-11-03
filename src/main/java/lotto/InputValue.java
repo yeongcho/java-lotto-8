@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputValue {
-
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
@@ -28,34 +27,14 @@ public class InputValue {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        validateNumbers(numbers);
+        LottoValidator.validateNumbers(numbers);;
         return numbers;
     }
 
     public static int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine());
-        validateBonus(bonus, winningNumbers);
+        LottoValidator.validateBonus(bonus, winningNumbers);
         return bonus;
-    }
-
-    private static void validateNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6 || numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않은 6개의 숫자여야 합니다.");
-        }
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-        }
-    }
-
-    private static void validateBonus(int bonus, List<Integer> winningNumbers) {
-        if (bonus < 1 || bonus > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        if (winningNumbers.contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
     }
 }
